@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "651049233839",
+    "firebase_url": "https://sahtin-2fc80-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "sahtin-2fc80",
+    "storage_bucket": "sahtin-2fc80.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651049233839:android:f678c3487ea1a4b027935a",
+        "android_client_info": {
+          "package_name": "com.example.food_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsQTdV4h0UjwX-2l6QmmlDdlzsEhdIrCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,392 @@
+{
+  "@@locale": "en",
+  "appTitle": "Sahtin",
+  "@appTitle": {
+    "description": "The title of the application"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home screen title"
+  },
+  "menus": "Menus",
+  "@menus": {
+    "description": "Menus screen title"
+  },
+  "cart": "Cart",
+  "@cart": {
+    "description": "Cart screen title"
+  },
+  "orders": "Orders",
+  "@orders": {
+    "description": "Orders screen title"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile screen title"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings screen title"
+  },
+  "help": "Help",
+  "@help": {
+    "description": "Help screen title"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search placeholder"
+  },
+  "addToCart": "Add to Cart",
+  "@addToCart": {
+    "description": "Add to cart button text"
+  },
+  "removeFromCart": "Remove",
+  "@removeFromCart": {
+    "description": "Remove from cart button text"
+  },
+  "checkout": "Checkout",
+  "@checkout": {
+    "description": "Checkout button text"
+  },
+  "total": "Total",
+  "@total": {
+    "description": "Total amount label"
+  },
+  "price": "Price",
+  "@price": {
+    "description": "Price label"
+  },
+  "quantity": "Quantity",
+  "@quantity": {
+    "description": "Quantity label"
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Description label"
+  },
+  "ingredients": "Ingredients",
+  "@ingredients": {
+    "description": "Ingredients label"
+  },
+  "allergens": "Allergens",
+  "@allergens": {
+    "description": "Allergens label"
+  },
+  "nutritionalInfo": "Nutritional Information",
+  "@nutritionalInfo": {
+    "description": "Nutritional information label"
+  },
+  "dishes": "Dishes",
+  "@dishes": {
+    "description": "Dishes label"
+  },
+  "orderStatus": "Order Status",
+  "@orderStatus": {
+    "description": "Order status label"
+  },
+  "orderDate": "Order Date",
+  "@orderDate": {
+    "description": "Order date label"
+  },
+  "deliveryAddress": "Delivery Address",
+  "@deliveryAddress": {
+    "description": "Delivery address label"
+  },
+  "paymentMethod": "Payment Method",
+  "@paymentMethod": {
+    "description": "Payment method label"
+  },
+  "orderNumber": "Order #{number}",
+  "@orderNumber": {
+    "description": "Order number with placeholder",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "orderTotal": "Order Total: {amount}",
+  "@orderTotal": {
+    "description": "Order total with amount",
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "estimatedDelivery": "Estimated Delivery: {time}",
+  "@estimatedDelivery": {
+    "description": "Estimated delivery time",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "orderPlaced": "Order Placed",
+  "@orderPlaced": {
+    "description": "Order placed status"
+  },
+  "orderConfirmed": "Order Confirmed",
+  "@orderConfirmed": {
+    "description": "Order confirmed status"
+  },
+  "orderPreparing": "Preparing",
+  "@orderPreparing": {
+    "description": "Order preparing status"
+  },
+  "orderReady": "Ready for Pickup",
+  "@orderReady": {
+    "description": "Order ready status"
+  },
+  "orderDelivered": "Delivered",
+  "@orderDelivered": {
+    "description": "Order delivered status"
+  },
+  "orderCancelled": "Cancelled",
+  "@orderCancelled": {
+    "description": "Order cancelled status"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login button text"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register button text"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout button text"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field label"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field label"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Confirm password field label"
+  },
+  "firstName": "First Name",
+  "@firstName": {
+    "description": "First name field label"
+  },
+  "lastName": "Last Name",
+  "@lastName": {
+    "description": "Last name field label"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone field label"
+  },
+  "address": "Address",
+  "@address": {
+    "description": "Address field label"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button text"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button text"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button text"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes button text"
+  },
+  "no": "No",
+  "@no": {
+    "description": "No button text"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button text"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error title"
+  },
+  "success": "Success",
+  "@success": {
+    "description": "Success title"
+  },
+  "warning": "Warning",
+  "@warning": {
+    "description": "Warning title"
+  },
+  "info": "Information",
+  "@info": {
+    "description": "Information title"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading text"
+  },
+  "noData": "No data available",
+  "@noData": {
+    "description": "No data message"
+  },
+  "noInternet": "No internet connection",
+  "@noInternet": {
+    "description": "No internet connection message"
+  },
+  "tryAgain": "Try Again",
+  "@tryAgain": {
+    "description": "Try again button text"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Back button text"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next button text"
+  },
+  "previous": "Previous",
+  "@previous": {
+    "description": "Previous button text"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button text"
+  },
+  "done": "Done",
+  "@done": {
+    "description": "Done button text"
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Skip button text"
+  },
+  "continueAction": "Continue",
+  "@continueAction": {
+    "description": "Continue button text"
+  },
+  "finish": "Finish",
+  "@finish": {
+    "description": "Finish button text"
+  },
+  "viewAll": "View All",
+  "@viewAll": {
+    "description": "View all button text"
+  },
+  "seeMore": "See More",
+  "@seeMore": {
+    "description": "See more button text"
+  },
+  "seeLess": "See Less",
+  "@seeLess": {
+    "description": "See less button text"
+  },
+  "filter": "Filter",
+  "@filter": {
+    "description": "Filter button text"
+  },
+  "sort": "Sort",
+  "@sort": {
+    "description": "Sort button text"
+  },
+  "clear": "Clear",
+  "@clear": {
+    "description": "Clear button text"
+  },
+  "apply": "Apply",
+  "@apply": {
+    "description": "Apply button text"
+  },
+  "reset": "Reset",
+  "@reset": {
+    "description": "Reset button text"
+  },
+  "refresh": "Refresh",
+  "@refresh": {
+    "description": "Refresh button text"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Share button text"
+  },
+  "favorite": "Favorite",
+  "@favorite": {
+    "description": "Favorite button text"
+  },
+  "unfavorite": "Unfavorite",
+  "@unfavorite": {
+    "description": "Unfavorite button text"
+  },
+  "rate": "Rate",
+  "@rate": {
+    "description": "Rate button text"
+  },
+  "review": "Review",
+  "@review": {
+    "description": "Review button text"
+  },
+  "contact": "Contact",
+  "@contact": {
+    "description": "Contact button text"
+  },
+  "support": "Support",
+  "@support": {
+    "description": "Support button text"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About button text"
+  },
+  "privacy": "Privacy Policy",
+  "@privacy": {
+    "description": "Privacy policy button text"
+  },
+  "terms": "Terms of Service",
+  "@terms": {
+    "description": "Terms of service button text"
+  },
+  "version": "Version {version}",
+  "@version": {
+    "description": "App version with placeholder",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "build": "Build {build}",
+  "@build": {
+    "description": "App build number with placeholder",
+    "placeholders": {
+      "build": {
+        "type": "String"
+      }
+    }
+  },
+  "loginTitle": "Login",
+  "loginSuccess": "Login successful",
+  "appSlogan": "Order healthy food easily and quickly",
+  "emailLabel": "Email",
+  "emailHint": "Enter your email",
+  "emailRequired": "Email is required",
+  "emailInvalid": "Please enter a valid email address",
+  "loginButton": "Login"
+}
