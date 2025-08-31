@@ -24,7 +24,9 @@ class AuthenticationApiService implements AuthenticationService {
               .get();
 
       if (userDoc.exists) {
-        return userDoc.data()!;
+        final data = userDoc.data()!;
+
+        return {...data, 'uid': userCredential.user!.uid};
       } else {
         return Future.error('User data not found in Firestore');
       }
@@ -36,7 +38,6 @@ class AuthenticationApiService implements AuthenticationService {
       }
       return Future.error(e.toString());
     } catch (e) {
-      print(e);
       return Future.error(e.toString());
     }
   }
@@ -71,8 +72,25 @@ class AuthenticationApiService implements AuthenticationService {
       }
       return Future.error(e.toString());
     } catch (e) {
-      print(e);
       return Future.error(e.toString());
+    }
+  }
+
+  @override
+  Future<bool> setPosition({
+    required String uid,
+    required double xPosition,
+    required double yPosition,
+  }) async {
+    try {
+      // Update user position directly using uid
+      await _firestore.collection('users').doc(uid).update({
+        'x_position': xPosition,
+        'y_position': yPosition,
+      });
+      return true; // Return success
+    } catch (e) {
+      return false; // Return failure
     }
   }
 }

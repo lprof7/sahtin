@@ -7,4 +7,9 @@ abstract class AuthenticationService {
     required String email,
     required String password,
   });
+  Future<bool> setPosition({
+    required String uid,
+    required double xPosition,
+    required double yPosition,
+  });
 }

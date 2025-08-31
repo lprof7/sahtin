@@ -1,27 +1,32 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../data/repositories/user_repository.dart';
-import '../../../../data/entities/user.dart';
+import '../../../../data/repositories/authentication_repository.dart'; // Use AuthenticationRepository
+import '../../../../data/models/user.dart'; // Use UserModel
 import 'login_state.dart';
+import 'package:easy_localization/easy_localization.dart'; // Import easy_localization
+import '../../../../core/responses/result.dart';
+import '../../../../core/models/failure.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final UserRepository userRepository;
+  final AuthenticationRepository
+  authenticationRepository; // Use AuthenticationRepository
 
-  LoginCubit({required this.userRepository}) : super(LoginInitial());
+  LoginCubit({required this.authenticationRepository})
+    : super(LoginInitial()); // Use AuthenticationRepository
 
-  Future<void> loginWithEmail(String email) async {
+  Future<void> loginWithEmail(String email, String password) async {
     emit(LoginLoading());
 
-    final result = await userRepository.loginWithEmail(email);
-    print(result);
+    final result = await authenticationRepository.login(
+      email: email,
+      password: password,
+    ); // Use AuthenticationRepository
 
-    if (result.isLeft) {
-      emit(LoginFailure(result.left!.message));
+    if (result.isSuccess) {
+      emit(LoginSuccess(result.data!));
     } else {
-      if (result.right != null) {
-        emit(LoginSuccess(result.right!));
-      } else {
-        emit(LoginFailure('لم يتم العثور على مستخدم بهذا البريد الإلكتروني'));
-      }
+      // استخدام رسالة خطأ أكثر تحديدًا للمستخدم
+      String errorMessage = 'invalidCredentials'.tr();
+      emit(LoginFailure(errorMessage));
     }
   }
 

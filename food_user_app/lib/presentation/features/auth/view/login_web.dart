@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../shared/localization/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart'; // Import easy_localization
 import '../viewmodel/login_cubit.dart';
 import '../viewmodel/login_state.dart';
 import '../../../shared/widgets/atoms/shared_button.dart';
@@ -12,6 +12,7 @@ import '../../../shared/themes/colors.dart';
 import '../../../shared/themes/text_styles.dart';
 import '../../../shared/utils/validators.dart';
 import '../../../../core/routing/app_router.dart';
+import '../../../../data/models/user.dart'; // Import User model
 
 /// واجهة تسجيل الدخول للويب
 class LoginWeb extends StatefulWidget {
@@ -24,6 +25,12 @@ class LoginWeb extends StatefulWidget {
 class _LoginWebState extends State<LoginWeb> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -33,7 +40,7 @@ class _LoginWebState extends State<LoginWeb> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    //final l10n = AppLocalizations.of(context)!;
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -43,7 +50,7 @@ class _LoginWebState extends State<LoginWeb> {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(l10n.loginSuccess),
+                content: Text(tr('loginSuccess')),
                 backgroundColor: AppColors.success,
               ),
             );
@@ -84,7 +91,7 @@ class _LoginWebState extends State<LoginWeb> {
                       ),
                       const SharedSpacer(size: 24),
                       SharedText(
-                        text: l10n.appTitle,
+                        text: tr('appTitle'),
                         textAlign: TextAlign.center,
                         type: TextType.heading1,
                         color: Colors.white,
@@ -94,7 +101,7 @@ class _LoginWebState extends State<LoginWeb> {
                         width: 400,
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: SharedText(
-                          text: l10n.appSlogan,
+                          text: tr('appSlogan'),
                           textAlign: TextAlign.center,
                           type: TextType.bodyLarge,
                           color: Colors.white,
@@ -123,14 +130,14 @@ class _LoginWebState extends State<LoginWeb> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               SharedText(
-                                text: l10n.loginTitle,
+                                text: tr('loginTitle'),
                                 textAlign: TextAlign.center,
                                 type: TextType.heading2,
                                 color: AppColors.textHeading,
                               ),
                               const SharedSpacer(size: 8),
                               SharedText(
-                                text: l10n.emailHint,
+                                text: tr('emailHint'),
                                 textAlign: TextAlign.center,
                                 type: TextType.bodyMedium,
                                 color: AppColors.textBody,
@@ -138,19 +145,33 @@ class _LoginWebState extends State<LoginWeb> {
                               const SharedSpacer(size: 40),
                               SharedFormField(
                                 controller: _emailController,
-                                label: l10n.emailLabel,
-                                hint: l10n.emailHint,
+                                label: tr('emailLabel'),
+                                hint: tr('emailHint'),
                                 keyboardType: TextInputType.emailAddress,
                                 prefixIcon: const Icon(
                                   Icons.email_outlined,
                                   color: AppColors.primary,
                                 ),
                                 validator:
-                                    (value) => validateEmail(value, l10n),
+                                    (value) => validateEmail(value, context),
+                              ),
+                              const SharedSpacer(size: 24),
+                              SharedFormField(
+                                controller: _passwordController,
+                                label: tr('passwordLabel'),
+                                hint: tr('passwordHint'),
+                                obscureText: true,
+                                keyboardType: TextInputType.visiblePassword,
+                                prefixIcon: const Icon(
+                                  Icons.lock_outline,
+                                  color: AppColors.primary,
+                                ),
+                                validator:
+                                    (value) => validatePassword(value, context),
                               ),
                               const SharedSpacer(size: 32),
                               SharedButton(
-                                text: l10n.loginButton,
+                                text: tr('loginButton'),
                                 isLoading: state is LoginLoading,
                                 onPressed: () {
                                   FocusScope.of(context).unfocus();
@@ -160,6 +181,7 @@ class _LoginWebState extends State<LoginWeb> {
                                   if (isValid) {
                                     context.read<LoginCubit>().loginWithEmail(
                                       _emailController.text,
+                                      _passwordController.text,
                                     );
                                   }
                                 },

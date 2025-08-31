@@ -8,9 +8,10 @@ import '../../../shared/widgets/atoms/shared_spacer.dart';
 import '../../../shared/widgets/atoms/shared_text.dart';
 import '../../../shared/themes/colors.dart';
 import '../../../shared/themes/text_styles.dart';
-import '../../../shared/localization/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart'; // Import easy_localization
 import '../../../shared/utils/validators.dart';
 import '../../../../core/routing/app_router.dart';
+import '../../../../data/models/user.dart'; // Import User model
 
 /// واجهة تسجيل الدخول للهواتف المحمولة
 class LoginMobile extends StatefulWidget {
@@ -23,6 +24,12 @@ class LoginMobile extends StatefulWidget {
 class _LoginMobileState extends State<LoginMobile> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -32,12 +39,11 @@ class _LoginMobileState extends State<LoginMobile> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
+    //final l10n = AppLocalizations.of(context)!; // Remove AppLocalizations
     return Scaffold(
       backgroundColor: AppColors.backgroundPrimary,
       appBar: AppBar(
-        title: Text(l10n.loginTitle),
+        title: Text(tr('loginTitle')), // Use tr('loginTitle')
         centerTitle: true,
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
@@ -48,7 +54,7 @@ class _LoginMobileState extends State<LoginMobile> {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(l10n.loginSuccess),
+                content: Text(tr('loginSuccess')), // Use tr('loginSuccess')
                 backgroundColor: AppColors.success,
               ),
             );
@@ -87,7 +93,7 @@ class _LoginMobileState extends State<LoginMobile> {
 
                     // عنوان التطبيق
                     SharedText(
-                      text: l10n.appTitle,
+                      text: tr('appTitle'),
                       textAlign: TextAlign.center,
                       type: TextType.heading1,
                       color: AppColors.primary,
@@ -96,7 +102,7 @@ class _LoginMobileState extends State<LoginMobile> {
 
                     // وصف قصير
                     SharedText(
-                      text: l10n.appSlogan,
+                      text: tr('appSlogan'),
                       textAlign: TextAlign.center,
                       type: TextType.bodyMedium,
                       color: AppColors.textBody,
@@ -106,20 +112,35 @@ class _LoginMobileState extends State<LoginMobile> {
                     // حقل البريد الإلكتروني
                     SharedFormField(
                       controller: _emailController,
-                      label: l10n.emailLabel,
-                      hint: l10n.emailHint,
+                      label: tr('emailLabel'),
+                      hint: tr('emailHint'),
                       keyboardType: TextInputType.emailAddress,
                       prefixIcon: const Icon(
                         Icons.email_outlined,
                         color: AppColors.primary,
                       ),
-                      validator: (value) => validateEmail(value, l10n),
+                      validator:
+                          (value) =>
+                              validateEmail(value, context), // Remove l10n
+                    ),
+                    const SharedSpacer(size: 24),
+                    SharedFormField(
+                      controller: _passwordController,
+                      label: tr('passwordLabel'),
+                      hint: tr('passwordHint'),
+                      obscureText: true,
+                      keyboardType: TextInputType.visiblePassword,
+                      prefixIcon: const Icon(
+                        Icons.lock_outline,
+                        color: AppColors.primary,
+                      ),
+                      validator: (value) => validatePassword(value, context),
                     ),
                     const SharedSpacer(size: 32),
 
                     // زر تسجيل الدخول
                     SharedButton(
-                      text: l10n.loginButton,
+                      text: tr('loginButton'),
                       isLoading: state is LoginLoading,
                       onPressed: () {
                         FocusScope.of(context).unfocus();
@@ -128,6 +149,7 @@ class _LoginMobileState extends State<LoginMobile> {
                         if (isValid) {
                           context.read<LoginCubit>().loginWithEmail(
                             _emailController.text,
+                            _passwordController.text,
                           );
                         }
                       },

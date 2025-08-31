@@ -1,0 +1,13 @@
+{
+  "login": "Login",
+  "email": "Email",
+  "password": "Password",
+  "loginTitle": "Login",
+  "loginSuccess": "Login successful",
+  "appTitle": "Food App",
+  "appSlogan": "Your favorite food, delivered to your door",
+  "emailLabel": "Email",
+  "emailHint": "Enter your email",
+  "loginButton": "Login",
+  "userNotFound": "User not found with this email"
+}

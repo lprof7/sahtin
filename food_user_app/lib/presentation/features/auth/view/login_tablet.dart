@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../shared/localization/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart'; // Import easy_localization
 import '../viewmodel/login_cubit.dart';
 import '../viewmodel/login_state.dart';
 import '../../../shared/widgets/atoms/shared_button.dart';
@@ -12,6 +12,7 @@ import '../../../shared/themes/colors.dart';
 import '../../../shared/themes/text_styles.dart';
 import '../../../shared/utils/validators.dart';
 import '../../../../core/routing/app_router.dart';
+import '../../../../data/models/user.dart'; // Import User model
 
 /// واجهة تسجيل الدخول للأجهزة اللوحية
 class LoginTablet extends StatefulWidget {
@@ -24,6 +25,12 @@ class LoginTablet extends StatefulWidget {
 class _LoginTabletState extends State<LoginTablet> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -33,13 +40,13 @@ class _LoginTabletState extends State<LoginTablet> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    //final l10n = AppLocalizations.of(context)!;
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: AppColors.backgroundSecondary,
       appBar: AppBar(
-        title: Text(l10n.loginTitle),
+        title: Text(tr('loginTitle')),
         centerTitle: true,
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
@@ -50,7 +57,7 @@ class _LoginTabletState extends State<LoginTablet> {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(l10n.loginSuccess),
+                content: Text(tr('loginSuccess')),
                 backgroundColor: AppColors.success,
               ),
             );
@@ -93,12 +100,12 @@ class _LoginTabletState extends State<LoginTablet> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SharedText(
-                                text: l10n.appTitle,
+                                text: tr('appTitle'),
                                 type: TextType.heading1,
                                 color: AppColors.primary,
                               ),
                               SharedText(
-                                text: l10n.appSlogan,
+                                text: tr('appSlogan'),
                                 type: TextType.bodyMedium,
                                 color: AppColors.textBody,
                               ),
@@ -114,7 +121,7 @@ class _LoginTabletState extends State<LoginTablet> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             SharedText(
-                              text: l10n.loginTitle,
+                              text: tr('loginTitle'),
                               textAlign: TextAlign.center,
                               type: TextType.heading2,
                               color: AppColors.textHeading,
@@ -122,18 +129,33 @@ class _LoginTabletState extends State<LoginTablet> {
                             const SharedSpacer(size: 32),
                             SharedFormField(
                               controller: _emailController,
-                              label: l10n.emailLabel,
-                              hint: l10n.emailHint,
+                              label: tr('emailLabel'),
+                              hint: tr('emailHint'),
                               keyboardType: TextInputType.emailAddress,
                               prefixIcon: const Icon(
                                 Icons.email_outlined,
                                 color: AppColors.primary,
                               ),
-                              validator: (value) => validateEmail(value, l10n),
+                              validator:
+                                  (value) => validateEmail(value, context),
+                            ),
+                            const SharedSpacer(size: 24),
+                            SharedFormField(
+                              controller: _passwordController,
+                              label: tr('passwordLabel'),
+                              hint: tr('passwordHint'),
+                              obscureText: true,
+                              keyboardType: TextInputType.visiblePassword,
+                              prefixIcon: const Icon(
+                                Icons.lock_outline,
+                                color: AppColors.primary,
+                              ),
+                              validator:
+                                  (value) => validatePassword(value, context),
                             ),
                             const SharedSpacer(size: 32),
                             SharedButton(
-                              text: l10n.loginButton,
+                              text: tr('loginButton'),
                               isLoading: state is LoginLoading,
                               onPressed: () {
                                 FocusScope.of(context).unfocus();
@@ -142,6 +164,7 @@ class _LoginTabletState extends State<LoginTablet> {
                                 if (isValid) {
                                   context.read<LoginCubit>().loginWithEmail(
                                     _emailController.text,
+                                    _passwordController.text,
                                   );
                                 }
                               },

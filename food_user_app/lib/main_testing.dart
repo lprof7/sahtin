@@ -1,8 +1,9 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:food_app/data/repositories/authentication_repository.dart';
-import 'package:food_app/data/services/authentication/authentication_api_service.dart';
+import 'package:food_app/data/repositories/dish_repository.dart';
+import 'package:food_app/data/services/dishes/dish_api_service.dart';
+import 'package:food_app/data/services/dishes/dish_local_service.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
@@ -16,11 +17,7 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   // الآن FirebaseAuth.instance سيكون جاهز بعد التهيئة 👇
-  final AuthenticationRepository authenticationRepository =
-      AuthenticationRepository(
-        authenticationService: AuthenticationApiService(),
-      );
-
+  final Dishrepository = DishRepository(dishApiService: DishApiService());
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,14 +26,10 @@ class MyApp extends StatelessWidget {
           child: ElevatedButton(
             child: const Text('test'),
             onPressed: () async {
-              try {
-                final result = await authenticationRepository.login(
-                  email: "test@gmail.com",
-                  password: "aaaaaa",
-                );
-                print('Login result: $result');
-              } catch (e) {
-                print('Login error: $e');
+              final result = await Dishrepository.getDishes();
+              print(result.data!.first.name);
+              try {} catch (e) {
+                print(' error: $e');
               }
             },
           ),
